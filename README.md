@@ -21,3 +21,12 @@ yarn add spanish-car-plate
 ## Demo
 
 [https://spanish-car-plate.netlify.com/](https://spanish-car-plate.netlify.com/)
+
+## Related
+
+- [better-dni](https://github.com/singuerinc/better-dni) - Spanish dni/nif/nie validation
+- [spain-phone](https://github.com/singuerinc/spain-phone) - Spanish phone number validation
+
+## Reference
+
+[https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Spain](https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Spain)
