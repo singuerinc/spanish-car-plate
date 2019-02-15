@@ -1,31 +1,20 @@
-import { _isNIE } from "./internal/_isNIE";
-import { _isNIF } from "./internal/_isNIF";
-
 /**
- * Returns true if the string is a valid DNI (NIF or NIE)
+ * Returns true if the string is a valid car plate
  * @param {string} value
  * @returns {boolean}
- * @since 1.1.0
+ * @since 0.0.1
  * @example
- * isValid("X9464186P"); // => true
- * isValid("03118880B"); // => true
+ * isValid("2345BCF"); // => true
  */
 const isValid = (value) => {
-  const dni = !value ? "" : value; // lowercase is faster
+  const num = !value ? "" : value;
+  const cleaned = num.replace(/^[\s]*([0-9]{4})[\s]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1$2");
 
-  if (dni.length !== 9 && !_isNIE(dni) && !_isNIF(dni)) {
+  if (cleaned.length !== 7) {
     return false;
   }
 
-  let f = "xyzXYZ".indexOf(dni[0]) % 3;
-
-  if (f === -1) {
-    f = dni[0];
-  }
-
-  const i = +(f + dni.slice(1, 8)) % 23;
-
-  return "trwagmyfpdxbnjzsqvhlcket".indexOf(dni[8].toLowerCase()) === i;
+  return true;
 };
 
 export { isValid };
