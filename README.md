@@ -18,6 +18,16 @@ npm i spanish-car-plate
 yarn add spanish-car-plate
 ```
 
+## Usage
+
+### isValid
+
+```js
+import { isValid } from "spanish-car-plate";
+
+isValid("1234BCD"); //=> true
+```
+
 ## Demo
 
 [https://spanish-car-plate.netlify.com/](https://spanish-car-plate.netlify.com/)
