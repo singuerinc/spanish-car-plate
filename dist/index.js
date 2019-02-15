@@ -25,7 +25,7 @@
       return false;
     }
 
-    return true;
+    return /^[0-9]{4}[BCDFGHJKLMNPRSTVWXYZ]{3}$/i.test(cleaned);
   };
 
   exports.isValid = isValid;
