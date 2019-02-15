@@ -28,6 +28,10 @@ import { isValid } from "spanish-car-plate";
 isValid("1234BCD"); //=> true
 ```
 
+## Todo
+
+- [ ] Old car plates validation
+
 ## Demo
 
 [https://spanish-car-plate.netlify.com/](https://spanish-car-plate.netlify.com/)
