@@ -26,6 +26,14 @@ describe("#isValid", () => {
     it("should not be valid with undefined", () => {
       assert.equal(isValid(undefined), false);
     });
+
+    it("should not be valid with 7 chars not valid", () => {
+      assert.equal(isValid("ABCDEFG"), false);
+    });
+
+    it("should not be valid with 7 chars not valid", () => {
+      assert.equal(isValid("1234ABC"), false);
+    });
   });
 
   describe("valid", () => {
