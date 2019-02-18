@@ -11,4 +11,6 @@ declare function isOld(value: string): boolean;
  */
 declare function isValid(value: string): boolean;
 
-export { isValid, isOld, getProvince };
+declare const PROVINCES: object;
+
+export { isValid, isOld, getProvince, PROVINCES };
