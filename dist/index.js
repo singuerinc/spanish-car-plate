@@ -19,7 +19,7 @@
    */
   var isValid = function isValid(value) {
     var num = !value ? "" : value;
-    var cleaned = num.replace(/^[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[^A-Z0-9]*$/i, "$1$2");
+    var cleaned = num.replace(/^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1$2");
 
     if (cleaned.length !== 7) {
       return false;
@@ -38,7 +38,7 @@
    */
   var isOld = function isOld(value) {
     var num = !value ? "" : value;
-    var cleaned = num.replace(/^[^A-Z0-9]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})$/i, "$1$2$3");
+    var cleaned = num.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1$2$3");
 
     if (cleaned.length < 7 || cleaned.length > 9) {
       return false;

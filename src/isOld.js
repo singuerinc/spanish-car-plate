@@ -9,7 +9,7 @@
 const isOld = (value) => {
   const num = !value ? "" : value;
   const cleaned = num.replace(
-    /^[^A-Z0-9]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})$/i,
+    /^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i,
     "$1$2$3"
   );
 

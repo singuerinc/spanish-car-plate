@@ -67,5 +67,15 @@ describe("#isOld", () => {
         assert.equal(isOld("DGP1234BL"), true);
       });
     });
+
+    describe("with special chars", () => {
+      it("should be valid with dots", () => {
+        assert.equal(isOld("GI.1234.BL"), true);
+      });
+
+      it("should be valid with any separator", () => {
+        assert.equal(isOld("GI|1234|BL"), true);
+      });
+    });
   });
 });

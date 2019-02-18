@@ -9,7 +9,7 @@
 const isValid = (value) => {
   const num = !value ? "" : value;
   const cleaned = num.replace(
-    /^[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[^A-Z0-9]*$/i,
+    /^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i,
     "$1$2"
   );
 
