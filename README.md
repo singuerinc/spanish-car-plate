@@ -33,7 +33,14 @@ isValid("1234BCD"); //=> true
 ```js
 import { isOld } from "spanish-car-plate";
 
+// one-letter code
 isOld("A 0849 CS"); //=> true
+
+// two-letter code
+isOld("GI 1234 BL"); //=> true
+
+// three-letter special code (such as ET for army cars and DGP for police cars)
+isOld("DGP 1234 BL"); //=> true
 ```
 
 ## Todo
