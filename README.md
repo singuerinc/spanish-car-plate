@@ -26,6 +26,10 @@ yarn add spanish-car-plate
 import { isValid } from "spanish-car-plate";
 
 isValid("1234BCD"); //=> true
+
+isValid("1234 FGH"); //=> true
+
+isValid("2345-JKL"); //=> true
 ```
 
 ### isOld
