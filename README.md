@@ -28,9 +28,18 @@ import { isValid } from "spanish-car-plate";
 isValid("1234BCD"); //=> true
 ```
 
+### isOld
+
+```js
+import { isOld } from "spanish-car-plate";
+
+isOld("A 0849 CS"); //=> true
+```
+
 ## Todo
 
-- [ ] Old car plates validation
+- [x] Basic Old car plates validation
+- [ ] Full Old car plates validation
 
 ## Demo
 
