@@ -11,7 +11,7 @@ import { isOld } from "./isOld";
  */
 const getProvince = (value) => {
   if (!isOld(value)) {
-    throw new Error("Only old plates contain information about the province.");
+    return null;
   }
 
   const num = !value ? "" : value;
@@ -20,11 +20,7 @@ const getProvince = (value) => {
     "$1"
   );
 
-  if (code.length !== 1 && code.length !== 2) {
-    throw new Error("This plate does not contains information about the province.");
-  }
-
-  return PROVINCES[code];
+  return PROVINCES[code] || null;
 };
 
 export { getProvince };

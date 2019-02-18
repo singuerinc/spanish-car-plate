@@ -3,9 +3,17 @@ const { getProvince } = require("../dist/index");
 
 describe("#getProvince", () => {
   describe("invalid", () => {
-    // it("should not be valid with more than max chars", () => {
-    //   assert.equal(getProvince("1234ABCDEFG 1234 BL"), false);
-    // });
+    describe("old plates only", () => {
+      it("should work only with old plates", () => {
+        assert.equal(getProvince("1234BCD"), null);
+      });
+    });
+
+    describe("unknown province", () => {
+      it("should not work with unknown code", () => {
+        assert.equal(getProvince("D1234BL"), null);
+      });
+    });
   });
 
   describe("valid", () => {

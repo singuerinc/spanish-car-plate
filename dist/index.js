@@ -118,17 +118,12 @@
 
   var getProvince = function getProvince(value) {
     if (!isOld(value)) {
-      throw new Error("Only old plates contain information about the province.");
+      return null;
     }
 
     var num = !value ? "" : value;
     var code = num.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1");
-
-    if (code.length !== 1 && code.length !== 2) {
-      throw new Error("This plate does not contains information about the province.");
-    }
-
-    return PROVINCES[code];
+    return PROVINCES[code] || null;
   };
 
   exports.isValid = isValid;
