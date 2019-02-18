@@ -20,19 +20,19 @@ yarn add spanish-car-plate
 
 ## Usage
 
-### isValid
+### isValid()
 
 ```js
 import { isValid } from "spanish-car-plate";
 
 isValid("1234BCD"); //=> true
-
 isValid("1234 FGH"); //=> true
-
 isValid("2345-JKL"); //=> true
+
+// note: old plates are also returns true
 ```
 
-### isOld
+### isOld()
 
 ```js
 import { isOld } from "spanish-car-plate";
@@ -47,26 +47,89 @@ isOld("GI-1234-BL"); //=> true
 isOld("DGP 1234 BL"); //=> true
 ```
 
-### getProvince
-
-It's possible to get the province from old plates
+### getCounter()
 
 ```js
-import { getProvince } from "spanish-car-plate";
+import { getCounter } from "spanish-car-plate";
 
-getProvince("B 1234 BL"); //=> "Province of Barcelona"
-getProvince("M 1234 BL"); //=> "Community of Madrid"
-getProvince("SO 1234 BL"); //=> "Province of Soria"
+getCounter("1234 BCD"); //=> "BCD"
+getCounter("A 0849 CS"); //=> "CS"
+```
+
+### getProvinceName()
+
+It is possible to get the province's name from old plates
+
+```js
+import { getProvinceName } from "spanish-car-plate";
+
+getProvinceName("B 1234 BL"); //=> "Province of Barcelona"
+getProvinceName("M 1234 BL"); //=> "Community of Madrid"
+getProvinceName("SO 1234 BL"); //=> "Province of Soria"
+```
+
+### getProvinceCode()
+
+It is possible to get the province's code from old plates
+
+```js
+import { getProvinceCode } from "spanish-car-plate";
+
+getProvinceCode("B 1234 BL"); //=> "B"
+getProvinceCode("M 1234 BL"); //=> "M"
+getProvinceCode("SO 1234 BL"); //=> "SO"
+```
+
+### parse()
+
+Get all the information about the plate
+
+#### Parse new plate
+
+```js
+import { parse } from "spanish-car-plate";
+
+parse("1234 BCD");
+```
+
+```json
+{
+  "isSpecial": false,
+  "isOld": false,
+  "provinceCode": null,
+  "provinceName": null,
+  "number": 1234,
+  "counter": "BCD"
+}
+```
+
+#### Parse old plate
+
+```js
+parse("GI 2345 BC");
+```
+
+```json
+{
+  "isSpecial": false,
+  "isOld": true,
+  "provinceCode": "GI",
+  "provinceName": "Province of Girona",
+  "number": 2345,
+  "counter": "BC"
+}
 ```
 
 ## Todo
 
 - [x] Basic Old car plates validation
-- [x] Get province for old plates
-- [ ] Detect special plates (ET, DGP, Mossos d'Esquadra)
 - [ ] Full Old car plates validation (exceptions)
+- [x] Get province details for old plates
+- [ ] Detect special plates (ET, DGP, Mossos d'Esquadra)
 - [ ] Demo page with old validation support
-- [ ] Parse car plate method
+- [ ] Demo page with new methods
+- [x] Parse car plate method
+- [ ] Create plate based on data
 
 ## Demo
 
