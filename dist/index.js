@@ -10,7 +10,7 @@
 }(this, (function (exports) { 'use strict';
 
   /**
-   * Returns true if the string is a valid car plate
+   * Returns true if the string is a valid car plate (only after year 2000)
    * @param {string} value
    * @returns {boolean}
    * @since 0.0.1
@@ -19,7 +19,7 @@
    */
   var isValid = function isValid(value) {
     var num = !value ? "" : value;
-    var cleaned = num.replace(/^[\s]*([0-9]{4})[\s]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1$2");
+    var cleaned = num.replace(/^[\s]*([0-9]{4})[\s-]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1$2");
 
     if (cleaned.length !== 7) {
       return false;
@@ -29,7 +29,7 @@
   };
 
   /**
-   * Returns true if the string is a valid car plate but old system *(1971-2000)
+   * Returns true if the string is a valid car plate old old system (1971-2000)
    * @param {string} value
    * @returns {boolean}
    * @since 0.0.2

@@ -1,5 +1,5 @@
 /**
- * Returns true if the string is a valid car plate
+ * Returns true if the string is a valid car plate (only after year 2000)
  * @param {string} value
  * @returns {boolean}
  * @since 0.0.1
@@ -8,7 +8,7 @@
  */
 const isValid = (value) => {
   const num = !value ? "" : value;
-  const cleaned = num.replace(/^[\s]*([0-9]{4})[\s]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1$2");
+  const cleaned = num.replace(/^[\s]*([0-9]{4})[\s-]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1$2");
 
   if (cleaned.length !== 7) {
     return false;

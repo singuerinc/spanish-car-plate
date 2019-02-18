@@ -56,5 +56,13 @@ describe("#isValid", () => {
     it("should be valid with if contains extra spaces", () => {
       assert.equal(isValid("    1234  BCD           "), true);
     });
+
+    it("should be valid with if contains dashes 1", () => {
+      assert.equal(isValid("1234-BCD"), true);
+    });
+
+    it("should be valid with if contains dashes 2", () => {
+      assert.equal(isValid("    1234--BCD           "), true);
+    });
   });
 });
