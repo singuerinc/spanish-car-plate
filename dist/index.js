@@ -19,27 +19,6 @@
   }
 
   /**
-   * Returns true if is a valid (post year 2000) car plate
-   * @param {string} value
-   * @returns {boolean}
-   * @since 0.0.1
-   * @example
-   * isValid("2345BCF"); // => true
-   */
-
-  function isValid(value) {
-    var str = !value ? "" : value;
-
-    var cleaned = _partsNew(str).join("");
-
-    if (cleaned.length !== 7) {
-      return false;
-    }
-
-    return /^[0-9]{4}[BCDFGHJKLMNPRSTVWXYZ]{3}$/i.test(cleaned);
-  }
-
-  /**
    * Returns true if is a valid (old system 1971-2000) car plate
    * @param {string} value
    * @returns {boolean}
@@ -58,6 +37,31 @@
     }
 
     return /^[A-Z]{1,3}[0-9]{4}[A-Z]{2}$/i.test(cleaned);
+  }
+
+  /**
+   * Returns true if is a valid (post year 2000) car plate
+   * @param {string} value
+   * @returns {boolean}
+   * @since 0.0.1
+   * @example
+   * isValid("2345BCF"); // => true
+   */
+
+  function isValid(value) {
+    if (isOld(value)) {
+      return true;
+    }
+
+    var str = !value ? "" : value;
+
+    var cleaned = _partsNew(str).join("");
+
+    if (cleaned.length !== 7) {
+      return false;
+    }
+
+    return /^[0-9]{4}[BCDFGHJKLMNPRSTVWXYZ]{3}$/i.test(cleaned);
   }
 
   function _defineProperty(obj, key, value) {

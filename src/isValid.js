@@ -1,4 +1,5 @@
 import { _partsNew } from "./_utils";
+import { isOld } from "./isOld";
 
 /**
  * Returns true if is a valid (post year 2000) car plate
@@ -9,6 +10,10 @@ import { _partsNew } from "./_utils";
  * isValid("2345BCF"); // => true
  */
 function isValid(value) {
+  if (isOld(value)) {
+    return true;
+  }
+
   const str = !value ? "" : value;
   const cleaned = _partsNew(str).join("");
 

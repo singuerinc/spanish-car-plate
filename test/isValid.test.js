@@ -49,32 +49,44 @@ describe("#isValid", () => {
   });
 
   describe("valid", () => {
-    it("should be valid 1234BCD", () => {
-      assert.equal(isValid("1234BCD"), true);
+    describe("new plates", () => {
+      it("should be valid 1234BCD", () => {
+        assert.equal(isValid("1234BCD"), true);
+      });
+
+      it("should be valid with if starts with spaces", () => {
+        assert.equal(isValid(" 1234BCD"), true);
+      });
+
+      it("should be valid with if ends with spaces", () => {
+        assert.equal(isValid("1234BCD "), true);
+      });
+
+      it("should be valid with if contains spaces", () => {
+        assert.equal(isValid("1234 BCD"), true);
+      });
+
+      it("should be valid with if contains extra spaces", () => {
+        assert.equal(isValid("    1234  BCD           "), true);
+      });
+
+      it("should be valid with if contains dashes 1", () => {
+        assert.equal(isValid("1234-BCD"), true);
+      });
+
+      it("should be valid with if contains dashes 2", () => {
+        assert.equal(isValid("    1234--BCD           "), true);
+      });
     });
 
-    it("should be valid with if starts with spaces", () => {
-      assert.equal(isValid(" 1234BCD"), true);
-    });
+    describe("old plates", () => {
+      it("should be valid with old plates 1", () => {
+        assert.equal(isValid("GI 1234 BL"), true);
+      });
 
-    it("should be valid with if ends with spaces", () => {
-      assert.equal(isValid("1234BCD "), true);
-    });
-
-    it("should be valid with if contains spaces", () => {
-      assert.equal(isValid("1234 BCD"), true);
-    });
-
-    it("should be valid with if contains extra spaces", () => {
-      assert.equal(isValid("    1234  BCD           "), true);
-    });
-
-    it("should be valid with if contains dashes 1", () => {
-      assert.equal(isValid("1234-BCD"), true);
-    });
-
-    it("should be valid with if contains dashes 2", () => {
-      assert.equal(isValid("    1234--BCD           "), true);
+      it("should be valid with old plates 2", () => {
+        assert.equal(isValid("A0849CS"), true);
+      });
     });
   });
 });

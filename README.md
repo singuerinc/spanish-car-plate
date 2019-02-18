@@ -26,10 +26,10 @@ yarn add spanish-car-plate
 import { isValid } from "spanish-car-plate";
 
 isValid("1234BCD"); //=> true
-
 isValid("1234 FGH"); //=> true
-
 isValid("2345-JKL"); //=> true
+
+// note: old plates are also returns true
 ```
 
 ### isOld()
@@ -53,35 +53,30 @@ isOld("DGP 1234 BL"); //=> true
 import { getCounter } from "spanish-car-plate";
 
 getCounter("1234 BCD"); //=> "BCD"
-
 getCounter("A 0849 CS"); //=> "CS"
 ```
 
 ### getProvinceName()
 
-It's possible to get the province's name from old plates
+It is possible to get the province's name from old plates
 
 ```js
 import { getProvinceName } from "spanish-car-plate";
 
 getProvinceName("B 1234 BL"); //=> "Province of Barcelona"
-
 getProvinceName("M 1234 BL"); //=> "Community of Madrid"
-
 getProvinceName("SO 1234 BL"); //=> "Province of Soria"
 ```
 
 ### getProvinceCode()
 
-It's possible to get the province's code from old plates
+It is possible to get the province's code from old plates
 
 ```js
 import { getProvinceCode } from "spanish-car-plate";
 
 getProvinceCode("B 1234 BL"); //=> "B"
-
 getProvinceCode("M 1234 BL"); //=> "M"
-
 getProvinceCode("SO 1234 BL"); //=> "SO"
 ```
 
