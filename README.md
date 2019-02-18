@@ -66,6 +66,7 @@ getProvince("SO 1234 BL"); //=> "Province of Soria"
 - [ ] Detect special plates (ET, DGP, Mossos d'Esquadra)
 - [ ] Full Old car plates validation (exceptions)
 - [ ] Demo page with old validation support
+- [ ] Parse car plate method
 
 ## Demo
 
