@@ -145,8 +145,8 @@ describe("#getProvince", () => {
       assert.equal(getProvince("ML 1234 BL"), "Melilla");
     });
 
-    it("should get Region of Murcia|Murcia", () => {
-      assert.equal(getProvince("MU 1234 BL"), "Region of Murcia|Murcia");
+    it("should get Region of Murcia", () => {
+      assert.equal(getProvince("MU 1234 BL"), "Region of Murcia");
     });
 
     it("should get Navarre", () => {
@@ -181,12 +181,12 @@ describe("#getProvince", () => {
       assert.equal(getProvince("S 1234 BL"), "Santander");
     });
 
-    it("should get Province of Salamanca|Salamanca", () => {
-      assert.equal(getProvince("SA 1234 BL"), "Province of Salamanca|Salamanca");
+    it("should get Province of Salamanca", () => {
+      assert.equal(getProvince("SA 1234 BL"), "Province of Salamanca");
     });
 
-    it("should get Province of Seville|Sevilla", () => {
-      assert.equal(getProvince("SE 1234 BL"), "Province of Seville|Sevilla");
+    it("should get Province of Seville", () => {
+      assert.equal(getProvince("SE 1234 BL"), "Province of Seville");
     });
 
     it("should get Province of Segovia", () => {

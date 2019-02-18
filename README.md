@@ -47,9 +47,22 @@ isOld("GI-1234-BL"); //=> true
 isOld("DGP 1234 BL"); //=> true
 ```
 
+### getProvince
+
+It's possible to get the province from old plates
+
+```js
+import { getProvince } from "spanish-car-plate";
+
+getProvince("B 1234 BL"); //=> "Province of Barcelona"
+getProvince("M 1234 BL"); //=> "Community of Madrid"
+getProvince("SO 1234 BL"); //=> "Province of Soria"
+```
+
 ## Todo
 
 - [x] Basic Old car plates validation
+- [x] Get province for old plates
 - [ ] Full Old car plates validation (exceptions)
 - [ ] Demo page with old validation support
 
