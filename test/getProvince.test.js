@@ -14,6 +14,20 @@ describe("#getProvince", () => {
         assert.equal(getProvince("D1234BL"), null);
       });
     });
+
+    describe("wrong input", () => {
+      it("should return null with null", () => {
+        assert.equal(getProvince(null), null);
+      });
+
+      it("should return null with undefined", () => {
+        assert.equal(getProvince(undefined), null);
+      });
+
+      it("should return null with empty", () => {
+        assert.equal(getProvince(""), null);
+      });
+    });
   });
 
   describe("valid", () => {
