@@ -20,7 +20,7 @@ yarn add spanish-car-plate
 
 ## Usage
 
-### isValid
+### isValid()
 
 ```js
 import { isValid } from "spanish-car-plate";
@@ -32,7 +32,7 @@ isValid("1234 FGH"); //=> true
 isValid("2345-JKL"); //=> true
 ```
 
-### isOld
+### isOld()
 
 ```js
 import { isOld } from "spanish-car-plate";
@@ -47,7 +47,7 @@ isOld("GI-1234-BL"); //=> true
 isOld("DGP 1234 BL"); //=> true
 ```
 
-### getCounter
+### getCounter()
 
 ```js
 import { getCounter } from "spanish-car-plate";
@@ -56,7 +56,7 @@ getCounter("1234 BCD"); //=> "BCD"
 getCounter("A 0849 CS"); //=> "CS"
 ```
 
-### getProvinceName
+### getProvinceName()
 
 It's possible to get the province's name from old plates
 
@@ -68,7 +68,7 @@ getProvinceName("M 1234 BL"); //=> "Community of Madrid"
 getProvinceName("SO 1234 BL"); //=> "Province of Soria"
 ```
 
-### getProvinceCode
+### getProvinceCode()
 
 It's possible to get the province's code from old plates
 
@@ -80,7 +80,7 @@ getProvinceCode("M 1234 BL"); //=> "M"
 getProvinceCode("SO 1234 BL"); //=> "SO"
 ```
 
-### parse
+### parse()
 
 Get all the information about the plate
 
