@@ -7,8 +7,8 @@
  * isValid("2345BCF"); // => true
  */
 function isValid(value) {
-  const num = !value ? "" : value;
-  const cleaned = num.replace(
+  const str = !value ? "" : value;
+  const cleaned = str.replace(
     /^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i,
     "$1$2"
   );

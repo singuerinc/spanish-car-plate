@@ -1,4 +1,4 @@
-//  Spanish Car Plate v0.0.3
+//  Spanish Car Plate v0.0.4
 //  https://github.com/singuerinc/spanish-car-plate
 //  (c) 2019-2019 Nahuel Scotti
 //  Spanish Car Plate may be freely distributed under the MIT license.
@@ -18,8 +18,8 @@
    * isValid("2345BCF"); // => true
    */
   function isValid(value) {
-    var num = !value ? "" : value;
-    var cleaned = num.replace(/^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1$2");
+    var str = !value ? "" : value;
+    var cleaned = str.replace(/^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1$2");
 
     if (cleaned.length !== 7) {
       return false;
@@ -37,14 +37,82 @@
    * isOld("GI-1234-CS"); // => true
    */
   function isOld(value) {
-    var num = !value ? "" : value;
-    var cleaned = num.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1$2$3");
+    var str = !value ? "" : value;
+    var cleaned = str.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1$2$3");
 
     if (cleaned.length < 7 || cleaned.length > 9) {
       return false;
     }
 
     return /^[A-Z]{1,3}[0-9]{4}[A-Z]{2}$/i.test(cleaned);
+  }
+
+  /**
+   *
+   * @param {string} value
+   * @returns {string}
+   * @since 0.0.5
+   * @example
+   * getCounter("GI-1234-CS"); // => "CS"
+   * getCounter("2345BCF"); // => "CS"
+   */
+
+  function getCounter(value) {
+    var str = !value ? "" : value;
+
+    if (isOld(str) === true) {
+      var cleaned = str.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$3");
+
+      if (cleaned.length !== 2) {
+        return null;
+      }
+
+      return cleaned;
+    } else if (isValid(str)) {
+      var _cleaned = str.replace(/^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$2");
+
+      if (_cleaned.length !== 3) {
+        return null;
+      }
+
+      return _cleaned;
+    }
+
+    return null;
+  }
+
+  /**
+   *
+   * @param {string} value
+   * @returns {number}
+   * @since 0.0.5
+   * @example
+   * getNumber("GI-1234-CS"); // => 1234
+   * getNumber("2345BCF"); // => 2345
+   */
+
+  function getNumber(value) {
+    var str = !value ? "" : value;
+
+    if (isOld(str) === true) {
+      var cleaned = str.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$2");
+
+      if (cleaned.length !== 4) {
+        return null;
+      }
+
+      return parseInt(cleaned, 10);
+    } else if (isValid(str)) {
+      var _cleaned = str.replace(/^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1");
+
+      if (_cleaned.length !== 4) {
+        return null;
+      }
+
+      return parseInt(_cleaned, 10);
+    }
+
+    return null;
   }
 
   var PROVINCES = {
@@ -108,27 +176,84 @@
   };
 
   /**
-   * Returns the province for a valid car plate in the old system (1971-2000)
+   * Returns the province code for a valid car plate in the old system (1971-2000)
+   * @param {string} value
+   * @returns {string}
+   * @since 0.0.5
+   * @example
+   * getProvinceCode("GI-1234-CS"); // => "GI"
+   */
+
+  function getProvinceCode(value) {
+    var str = !value ? "" : value;
+
+    if (!isOld(str)) {
+      return null;
+    }
+
+    var code = str.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1");
+    return PROVINCES[code] ? code : null;
+  }
+
+  /**
+   * Returns the province name for a valid car plate in the old system (1971-2000)
    * @param {string} value
    * @returns {string}
    * @since 0.0.3
    * @example
-   * getProvince("GI-1234-CS"); // => "Province of Girona"
+   * getProvinceName("GI-1234-CS"); // => "Province of Girona"
    */
 
-  function getProvince(value) {
-    if (!isOld(value)) {
-      return null;
+  function getProvinceName(value) {
+    var str = !value ? "" : value;
+    var code = getProvinceCode(str);
+    return PROVINCES[code] || null;
+  }
+
+  /**
+   * Returns an object containing information about the plate
+   * @param {string} value
+   * @returns {boolean}
+   * @since 0.0.5
+   * @example
+   * parse("2345BCF"); // => { isSpecial: false, isOld: false, number: 2345, counter: "BCF" }
+   * parse("GI2345BC"); // => { isSpecial: false, isOld: true, provinceCode: "GI", provinceName: "Province of Girona", number: 2345, counter: "BC" }
+   */
+
+  function parse(value) {
+    var str = !value ? "" : value;
+    var old = isOld(str);
+    var parsed = {
+      isSpecial: false // TODO: not implemented
+
+    };
+
+    if (old === true) {
+      parsed.isOld = true;
+      var provinceName = getProvinceName(str);
+      var provinceCode = getProvinceCode(str);
+      parsed.provinceName = provinceName;
+      parsed.provinceCode = provinceCode;
+      parsed.counter = getCounter(str);
+      parsed.number = getNumber(str);
+      return parsed;
+    } else if (isValid(str) === true) {
+      parsed.isOld = false;
+      parsed.counter = getCounter(str);
+      parsed.number = getNumber(str);
+      return parsed;
     }
 
-    var num = !value ? "" : value;
-    var code = num.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1");
-    return PROVINCES[code] || null;
+    return null;
   }
 
   exports.isValid = isValid;
   exports.isOld = isOld;
-  exports.getProvince = getProvince;
+  exports.getCounter = getCounter;
+  exports.getNumber = getNumber;
+  exports.getProvinceName = getProvinceName;
+  exports.getProvinceCode = getProvinceCode;
+  exports.parse = parse;
   exports.PROVINCES = PROVINCES;
 
   Object.defineProperty(exports, '__esModule', { value: true });
