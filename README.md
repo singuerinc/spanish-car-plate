@@ -43,7 +43,7 @@ isOld("A 0849 CS"); //=> true
 // two-letter code
 isOld("GI-1234-BL"); //=> true
 
-// three-letter special code (such as ET for army cars and DGP for police cars)
+// two/three-letter special code (such as ET for army cars and DGP for police cars)
 isOld("DGP 1234 BL"); //=> true
 ```
 
@@ -63,6 +63,7 @@ getProvince("SO 1234 BL"); //=> "Province of Soria"
 
 - [x] Basic Old car plates validation
 - [x] Get province for old plates
+- [ ] Detect special plates (ET, DGP, Mossos d'Esquadra)
 - [ ] Full Old car plates validation (exceptions)
 - [ ] Demo page with old validation support
 
