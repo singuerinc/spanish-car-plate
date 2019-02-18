@@ -1,10 +1,10 @@
 /**
- * Returns true if the string is a valid car plate old old system (1971-2000)
+ * Returns true if the string is a valid car plate in the old system (1971-2000)
  * @param {string} value
  * @returns {boolean}
  * @since 0.0.2
  * @example
- * isValid("GI-1234-CS"); // => true
+ * isOld("GI-1234-CS"); // => true
  */
 const isOld = (value) => {
   const num = !value ? "" : value;
