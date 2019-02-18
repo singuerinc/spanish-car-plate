@@ -9,6 +9,15 @@
   (factory((global.SpanishCarPlate = {})));
 }(this, (function (exports) { 'use strict';
 
+  function _partsOld(str) {
+    var cleaned = str.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1,$2,$3");
+    return cleaned.split(",");
+  }
+  function _partsNew(str) {
+    var cleaned = str.replace(/^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1,$2");
+    return cleaned.split(",");
+  }
+
   /**
    * Returns true if is a valid (post year 2000) car plate
    * @param {string} value
@@ -17,9 +26,11 @@
    * @example
    * isValid("2345BCF"); // => true
    */
+
   function isValid(value) {
     var str = !value ? "" : value;
-    var cleaned = str.replace(/^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1$2");
+
+    var cleaned = _partsNew(str).join("");
 
     if (cleaned.length !== 7) {
       return false;
@@ -36,15 +47,89 @@
    * @example
    * isOld("GI-1234-CS"); // => true
    */
+
   function isOld(value) {
     var str = !value ? "" : value;
-    var cleaned = str.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1$2$3");
+
+    var cleaned = _partsOld(str).join("");
 
     if (cleaned.length < 7 || cleaned.length > 9) {
       return false;
     }
 
     return /^[A-Z]{1,3}[0-9]{4}[A-Z]{2}$/i.test(cleaned);
+  }
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  function _objectSpread(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+      var ownKeys = Object.keys(source);
+
+      if (typeof Object.getOwnPropertySymbols === 'function') {
+        ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+          return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+        }));
+      }
+
+      ownKeys.forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    }
+
+    return target;
+  }
+
+  function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+  }
+
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+
+  function _iterableToArrayLimit(arr, i) {
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
+  }
+
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance");
   }
 
   /**
@@ -61,21 +146,25 @@
     var str = !value ? "" : value;
 
     if (isOld(str) === true) {
-      var cleaned = str.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$3");
+      var _partsOld2 = _partsOld(str),
+          _partsOld3 = _slicedToArray(_partsOld2, 3),
+          counter = _partsOld3[2];
 
-      if (cleaned.length !== 2) {
+      if (counter.length !== 2) {
         return null;
       }
 
-      return cleaned;
+      return counter;
     } else if (isValid(str)) {
-      var _cleaned = str.replace(/^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$2");
+      var _partsNew2 = _partsNew(str),
+          _partsNew3 = _slicedToArray(_partsNew2, 2),
+          _counter = _partsNew3[1];
 
-      if (_cleaned.length !== 3) {
+      if (_counter.length !== 3) {
         return null;
       }
 
-      return _cleaned;
+      return _counter;
     }
 
     return null;
@@ -87,29 +176,33 @@
    * @returns {number}
    * @since 0.0.5
    * @example
-   * getNumber("GI-1234-CS"); // => 1234
    * getNumber("2345BCF"); // => 2345
+   * getNumber("GI-1234-CS"); // => 1234
    */
 
   function getNumber(value) {
     var str = !value ? "" : value;
 
     if (isOld(str) === true) {
-      var cleaned = str.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$2");
+      var _partsOld2 = _partsOld(str),
+          _partsOld3 = _slicedToArray(_partsOld2, 2),
+          num = _partsOld3[1];
 
-      if (cleaned.length !== 4) {
+      if (num.length !== 4) {
         return null;
       }
 
-      return parseInt(cleaned, 10);
+      return parseInt(num, 10);
     } else if (isValid(str)) {
-      var _cleaned = str.replace(/^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1");
+      var _partsNew2 = _partsNew(str),
+          _partsNew3 = _slicedToArray(_partsNew2, 1),
+          _num = _partsNew3[0];
 
-      if (_cleaned.length !== 4) {
+      if (_num.length !== 4) {
         return null;
       }
 
-      return parseInt(_cleaned, 10);
+      return parseInt(_num, 10);
     }
 
     return null;
@@ -191,7 +284,10 @@
       return null;
     }
 
-    var code = str.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1");
+    var _partsOld2 = _partsOld(str),
+        _partsOld3 = _slicedToArray(_partsOld2, 1),
+        code = _partsOld3[0];
+
     return PROVINCES[code] ? code : null;
   }
 
@@ -199,7 +295,7 @@
    * Returns the province name for a valid car plate in the old system (1971-2000)
    * @param {string} value
    * @returns {string}
-   * @since 0.0.3
+   * @since 0.0.5
    * @example
    * getProvinceName("GI-1234-CS"); // => "Province of Girona"
    */
@@ -210,15 +306,35 @@
     return PROVINCES[code] || null;
   }
 
+  function _parseNew(str) {
+    var parsed = {};
+    parsed.isOld = false;
+    parsed.counter = getCounter(str);
+    parsed.number = getNumber(str);
+    return parsed;
+  }
+
+  function _parseOld(str) {
+    var parsed = {};
+    parsed.isOld = true;
+    var provinceName = getProvinceName(str);
+    var provinceCode = getProvinceCode(str);
+    parsed.provinceName = provinceName;
+    parsed.provinceCode = provinceCode;
+    parsed.counter = getCounter(str);
+    parsed.number = getNumber(str);
+    return parsed;
+  }
   /**
    * Returns an object containing information about the plate
    * @param {string} value
    * @returns {boolean}
    * @since 0.0.5
    * @example
-   * parse("2345BCF"); // => { isSpecial: false, isOld: false, number: 2345, counter: "BCF" }
+   * parse("2345BCF"); // => { isSpecial: false, isOld: false, provinceCode: null, provinceName: null, number: 2345, counter: "BCF" }
    * parse("GI2345BC"); // => { isSpecial: false, isOld: true, provinceCode: "GI", provinceName: "Province of Girona", number: 2345, counter: "BC" }
    */
+
 
   function parse(value) {
     var str = !value ? "" : value;
@@ -229,19 +345,9 @@
     };
 
     if (old === true) {
-      parsed.isOld = true;
-      var provinceName = getProvinceName(str);
-      var provinceCode = getProvinceCode(str);
-      parsed.provinceName = provinceName;
-      parsed.provinceCode = provinceCode;
-      parsed.counter = getCounter(str);
-      parsed.number = getNumber(str);
-      return parsed;
+      return _objectSpread({}, parsed, _parseOld(str));
     } else if (isValid(str) === true) {
-      parsed.isOld = false;
-      parsed.counter = getCounter(str);
-      parsed.number = getNumber(str);
-      return parsed;
+      return _objectSpread({}, parsed, _parseNew(str));
     }
 
     return null;

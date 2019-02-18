@@ -1,3 +1,5 @@
+import { _partsNew } from "./_utils";
+
 /**
  * Returns true if is a valid (post year 2000) car plate
  * @param {string} value
@@ -8,10 +10,7 @@
  */
 function isValid(value) {
   const str = !value ? "" : value;
-  const cleaned = str.replace(
-    /^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i,
-    "$1$2"
-  );
+  const cleaned = _partsNew(str).join("");
 
   if (cleaned.length !== 7) {
     return false;

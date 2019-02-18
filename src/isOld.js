@@ -1,3 +1,5 @@
+import { _partsOld } from "./_utils";
+
 /**
  * Returns true if is a valid (old system 1971-2000) car plate
  * @param {string} value
@@ -8,10 +10,7 @@
  */
 function isOld(value) {
   const str = !value ? "" : value;
-  const cleaned = str.replace(
-    /^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i,
-    "$1$2$3"
-  );
+  const cleaned = _partsOld(str).join("");
 
   if (cleaned.length < 7 || cleaned.length > 9) {
     return false;

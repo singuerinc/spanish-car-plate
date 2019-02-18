@@ -128,11 +128,13 @@ parse("GI 2345 BC");
 ## Todo
 
 - [x] Basic Old car plates validation
-- [x] Get province for old plates
-- [ ] Detect special plates (ET, DGP, Mossos d'Esquadra)
 - [ ] Full Old car plates validation (exceptions)
+- [x] Get province details for old plates
+- [ ] Detect special plates (ET, DGP, Mossos d'Esquadra)
 - [ ] Demo page with old validation support
+- [ ] Demo page with new methods
 - [x] Parse car plate method
+- [ ] Create plate based on data
 
 ## Demo
 
