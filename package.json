@@ -1,7 +1,7 @@
 {
   "name": "spanish-car-plate",
   "version": "0.0.1",
-  "description": "The fastest Spanish Car Plate validation out there.",
+  "description": "Spanish Car Plate validation",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "Nahuel Scotti <nahuel.scotti@gmail.com> (https://www.singuerinc.com)",

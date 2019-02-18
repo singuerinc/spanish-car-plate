@@ -6,7 +6,7 @@
 
 # Spanish Car Plate
 
-The fastest Spanish Car Plate validation out there.
+Spanish Car Plate validation
 
 ## Installation
 
