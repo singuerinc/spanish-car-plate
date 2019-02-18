@@ -6,6 +6,18 @@ describe("#isOld", () => {
     it("should not be valid without all chars required", () => {
       assert.equal(isOld("X"), false);
     });
+
+    it("should not be valid with null", () => {
+      assert.equal(isOld(null), false);
+    });
+
+    it("should not be valid with undefined", () => {
+      assert.equal(isOld(undefined), false);
+    });
+
+    it("should not be valid with empty string", () => {
+      assert.equal(isOld(""), false);
+    });
   });
 
   describe("valid", () => {

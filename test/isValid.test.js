@@ -3,6 +3,18 @@ const { isValid } = require("../dist/index");
 
 describe("#isValid", () => {
   describe("invalid", () => {
+    it("should not be valid with null", () => {
+      assert.equal(isValid(null), false);
+    });
+
+    it("should not be valid with undefined", () => {
+      assert.equal(isValid(undefined), false);
+    });
+
+    it("should not be valid with empty string", () => {
+      assert.equal(isValid(""), false);
+    });
+
     it("should not be valid with more than max chars", () => {
       assert.equal(isValid("1234ABCDEFG"), false);
     });
