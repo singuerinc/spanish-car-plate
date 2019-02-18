@@ -46,7 +46,7 @@ isOld("DGP 1234 BL"); //=> true
 ## Todo
 
 - [x] Basic Old car plates validation
-- [ ] Full Old car plates validation
+- [ ] Full Old car plates validation (exceptions)
 
 ## Demo
 
