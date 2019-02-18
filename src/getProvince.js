@@ -9,7 +9,7 @@ import { isOld } from "./isOld";
  * @example
  * getProvince("GI-1234-CS"); // => "Province of Girona"
  */
-const getProvince = (value) => {
+function getProvince(value) {
   if (!isOld(value)) {
     return null;
   }
@@ -21,6 +21,6 @@ const getProvince = (value) => {
   );
 
   return PROVINCES[code] || null;
-};
+}
 
 export { getProvince };

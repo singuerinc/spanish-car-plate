@@ -1,5 +1,5 @@
 const assert = require("assert");
-const { isValid, isOld, getProvince } = require("../dist/index");
+const { isValid, isOld, getProvince, PROVINCES } = require("../dist/index");
 
 describe("api", () => {
   it("should export isValid", () => {
@@ -12,5 +12,9 @@ describe("api", () => {
 
   it("should export getProvince", () => {
     assert.ok(getProvince);
+  });
+
+  it("should export PROVINCES", () => {
+    assert.ok(PROVINCES);
   });
 });

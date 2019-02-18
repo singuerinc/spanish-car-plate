@@ -1,12 +1,12 @@
 /**
- * Returns true if the string is a valid car plate (only after year 2000)
+ * Returns true if is a valid (post year 2000) car plate
  * @param {string} value
  * @returns {boolean}
  * @since 0.0.1
  * @example
  * isValid("2345BCF"); // => true
  */
-const isValid = (value) => {
+function isValid(value) {
   const num = !value ? "" : value;
   const cleaned = num.replace(
     /^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i,
@@ -18,6 +18,6 @@ const isValid = (value) => {
   }
 
   return /^[0-9]{4}[BCDFGHJKLMNPRSTVWXYZ]{3}$/i.test(cleaned);
-};
+}
 
 export { isValid };

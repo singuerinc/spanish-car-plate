@@ -1,6 +1,6 @@
 //  Spanish Car Plate v0.0.3
 //  https://github.com/singuerinc/spanish-car-plate
-//  (c) 2017-2019 Nahuel Scotti
+//  (c) 2019-2019 Nahuel Scotti
 //  Spanish Car Plate may be freely distributed under the MIT license.
 
 (function (global, factory) {
@@ -10,14 +10,14 @@
 }(this, (function (exports) { 'use strict';
 
   /**
-   * Returns true if the string is a valid car plate (only after year 2000)
+   * Returns true if is a valid (post year 2000) car plate
    * @param {string} value
    * @returns {boolean}
    * @since 0.0.1
    * @example
    * isValid("2345BCF"); // => true
    */
-  var isValid = function isValid(value) {
+  function isValid(value) {
     var num = !value ? "" : value;
     var cleaned = num.replace(/^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1$2");
 
@@ -26,17 +26,17 @@
     }
 
     return /^[0-9]{4}[BCDFGHJKLMNPRSTVWXYZ]{3}$/i.test(cleaned);
-  };
+  }
 
   /**
-   * Returns true if the string is a valid car plate in the old system (1971-2000)
+   * Returns true if is a valid (old system 1971-2000) car plate
    * @param {string} value
    * @returns {boolean}
    * @since 0.0.2
    * @example
    * isOld("GI-1234-CS"); // => true
    */
-  var isOld = function isOld(value) {
+  function isOld(value) {
     var num = !value ? "" : value;
     var cleaned = num.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1$2$3");
 
@@ -45,7 +45,7 @@
     }
 
     return /^[A-Z]{1,3}[0-9]{4}[A-Z]{2}$/i.test(cleaned);
-  };
+  }
 
   var PROVINCES = {
     A: "Province of Alicante",
@@ -116,7 +116,7 @@
    * getProvince("GI-1234-CS"); // => "Province of Girona"
    */
 
-  var getProvince = function getProvince(value) {
+  function getProvince(value) {
     if (!isOld(value)) {
       return null;
     }
@@ -124,11 +124,12 @@
     var num = !value ? "" : value;
     var code = num.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1");
     return PROVINCES[code] || null;
-  };
+  }
 
   exports.isValid = isValid;
   exports.isOld = isOld;
   exports.getProvince = getProvince;
+  exports.PROVINCES = PROVINCES;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -6,7 +6,7 @@ const banner =
   version +
   "\n" +
   "//  https://github.com/singuerinc/spanish-car-plate\n" +
-  "//  (c) 2017-" +
+  "//  (c) 2019-" +
   new Date().getFullYear() +
   " Nahuel Scotti\n" +
   "//  Spanish Car Plate may be freely distributed under the MIT license.\n";
