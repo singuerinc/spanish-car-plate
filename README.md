@@ -6,16 +6,13 @@
 
 # Spanish Car Plate
 
-Spanish Car Plate validation
+Spanish car plate validation<br/>
+_Validación de matriculas de coches en España_
 
 ## Installation
 
-```js
-// npm
+```bash
 npm i spanish-car-plate
-
-// yarn
-yarn add spanish-car-plate
 ```
 
 ## Usage
@@ -23,13 +20,14 @@ yarn add spanish-car-plate
 ### isValid()
 
 ```js
-import { isValid } from "spanish-car-plate";
+import { isValid, isOld } from "spanish-car-plate";
 
 isValid("1234BCD"); //=> true
 isValid("1234 FGH"); //=> true
 isValid("2345-JKL"); //=> true
 
-// note: old plates also returns true
+// note: old valid plates also returns true
+isOld("A 0849 CS") === isValid("A 0849 CS"); //=> true
 ```
 
 ### isOld()
