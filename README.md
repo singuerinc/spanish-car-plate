@@ -29,7 +29,7 @@ isValid("1234BCD"); //=> true
 isValid("1234 FGH"); //=> true
 isValid("2345-JKL"); //=> true
 
-// note: old plates are also returns true
+// note: old plates also returns true
 ```
 
 ### isOld()
@@ -53,7 +53,7 @@ isOld("DGP 1234 BL"); //=> true
 import { getCounter } from "spanish-car-plate";
 
 getCounter("1234 BCD"); //=> "BCD"
-getCounter("A 0849 CS"); //=> "CS"
+getCounter("A-0849 CS"); //=> "CS"
 ```
 
 ### getProvinceName()
@@ -64,7 +64,7 @@ It is possible to get the province's name from old plates
 import { getProvinceName } from "spanish-car-plate";
 
 getProvinceName("B 1234 BL"); //=> "Province of Barcelona"
-getProvinceName("M 1234 BL"); //=> "Community of Madrid"
+getProvinceName("M-1234 BL"); //=> "Community of Madrid"
 getProvinceName("SO 1234 BL"); //=> "Province of Soria"
 ```
 
@@ -77,7 +77,7 @@ import { getProvinceCode } from "spanish-car-plate";
 
 getProvinceCode("B 1234 BL"); //=> "B"
 getProvinceCode("M 1234 BL"); //=> "M"
-getProvinceCode("SO 1234 BL"); //=> "SO"
+getProvinceCode("SO-1234 BL"); //=> "SO"
 ```
 
 ### parse()
