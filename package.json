@@ -15,7 +15,8 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test": "yarn build && nyc mocha",
     "test:watch": "nyc mocha --watch",
-    "release": "NODE_ENV=production yarn test"
+    "release": "NODE_ENV=production yarn test",
+    "report": "nyc report --reporter=html"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",

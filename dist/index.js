@@ -1,4 +1,4 @@
-//  Spanish Car Plate v0.0.4
+//  Spanish Car Plate v0.0.5
 //  https://github.com/singuerinc/spanish-car-plate
 //  (c) 2019-2019 Nahuel Scotti
 //  Spanish Car Plate may be freely distributed under the MIT license.
@@ -154,19 +154,11 @@
           _partsOld3 = _slicedToArray(_partsOld2, 3),
           counter = _partsOld3[2];
 
-      if (counter.length !== 2) {
-        return null;
-      }
-
       return counter;
     } else if (isValid(str)) {
       var _partsNew2 = _partsNew(str),
           _partsNew3 = _slicedToArray(_partsNew2, 2),
           _counter = _partsNew3[1];
-
-      if (_counter.length !== 3) {
-        return null;
-      }
 
       return _counter;
     }

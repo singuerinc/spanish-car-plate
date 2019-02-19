@@ -16,19 +16,9 @@ function getCounter(value) {
 
   if (isOld(str) === true) {
     const [, , counter] = _partsOld(str);
-
-    if (counter.length !== 2) {
-      return null;
-    }
-
     return counter;
   } else if (isValid(str)) {
     const [, counter] = _partsNew(str);
-
-    if (counter.length !== 3) {
-      return null;
-    }
-
     return counter;
   }
 
