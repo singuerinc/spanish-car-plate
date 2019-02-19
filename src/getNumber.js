@@ -16,19 +16,9 @@ function getNumber(value) {
 
   if (isOld(str) === true) {
     const [, num] = _partsOld(str);
-
-    if (num.length !== 4) {
-      return null;
-    }
-
     return parseInt(num, 10);
   } else if (isValid(str)) {
     const [num] = _partsNew(str);
-
-    if (num.length !== 4) {
-      return null;
-    }
-
     return parseInt(num, 10);
   }
 

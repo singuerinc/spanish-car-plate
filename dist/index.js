@@ -184,19 +184,11 @@
           _partsOld3 = _slicedToArray(_partsOld2, 2),
           num = _partsOld3[1];
 
-      if (num.length !== 4) {
-        return null;
-      }
-
       return parseInt(num, 10);
     } else if (isValid(str)) {
       var _partsNew2 = _partsNew(str),
           _partsNew3 = _slicedToArray(_partsNew2, 1),
           _num = _partsNew3[0];
-
-      if (_num.length !== 4) {
-        return null;
-      }
 
       return parseInt(_num, 10);
     }
