@@ -3,6 +3,7 @@ const {
   isValid,
   parse,
   isOld,
+  isSpecial,
   getCounter,
   getProvinceName,
   getProvinceCode,
@@ -20,6 +21,10 @@ describe("api", () => {
 
   it("should export isOld", () => {
     assert.ok(isOld);
+  });
+
+  it("should export isSpecial", () => {
+    assert.ok(isSpecial);
   });
 
   it("should export getProvinceName", () => {

@@ -9,6 +9,10 @@
   (factory((global.SpanishCarPlate = {})));
 }(this, (function (exports) { 'use strict';
 
+  function _partsSpecial(str) {
+    var cleaned = str.replace(/^[\s]*([CMEDGPNATFSHMORW]{1,5})[^A-Z0-9]*([0-9]{4})[\s]*$/i, "$1,$2");
+    return cleaned.split(",");
+  }
   function _partsOld(str) {
     var cleaned = str.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1,$2,$3");
     return cleaned.split(",");
@@ -134,6 +138,56 @@
 
   function _nonIterableRest() {
     throw new TypeError("Invalid attempt to destructure non-iterable instance");
+  }
+
+  var SPECIALS = {
+    CME: "Corps of the Mossos d'Esquadra",
+    DGP: "Spanish Police",
+    CNP: "Spanish Police",
+    E: "Autonomous police force of the Basque Country",
+    EA: "Air Force",
+    ET: "Spanish Army",
+    FAE: "Allied Forces in Spain",
+    FN: "Spanish Navy",
+    GSH: "Colonial police on Sahara",
+    PGC: "Spanish civil guard",
+    MF: "Public Works Ministry",
+    MMA: "Environment Ministry",
+    MOP: "Public Works Ministry",
+    PME: "State owned vehicles",
+    PMM: "State owned vehicles, on a Ministry",
+    Crown: "King's Car"
+  };
+
+  /**
+   * Returns true if is a valid spacial car plate
+   * @param {string} value
+   * @returns {boolean}
+   * @since 0.0.7
+   * @example
+   * isSpecial("CME 2342"); // => true
+   * isSpecial("E 1660"); // => true
+   */
+
+  function isSpecial(value) {
+    var str = !value ? "" : value;
+
+    var _partsSpecial2 = _partsSpecial(str),
+        _partsSpecial3 = _slicedToArray(_partsSpecial2, 2),
+        code = _partsSpecial3[0],
+        num = _partsSpecial3[1];
+
+    var cleaned = "".concat(code).concat(num);
+
+    if (cleaned.length < 5 || cleaned.length > 9) {
+      return false;
+    }
+
+    if (!SPECIALS[code]) {
+      return false;
+    }
+
+    return /^[CMEDGPNATFSHMORW]{1,5}[0-9]{4}$/i.test(cleaned);
   }
 
   /**
@@ -343,12 +397,14 @@
 
   exports.isValid = isValid;
   exports.isOld = isOld;
+  exports.isSpecial = isSpecial;
   exports.getCounter = getCounter;
   exports.getNumber = getNumber;
   exports.getProvinceName = getProvinceName;
   exports.getProvinceCode = getProvinceCode;
   exports.parse = parse;
   exports.PROVINCES = PROVINCES;
+  exports.SPECIALS = SPECIALS;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
