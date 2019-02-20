@@ -6,6 +6,7 @@ import { getProvinceCode } from "./getProvinceCode";
 import { getCounter } from "./getCounter";
 import { getNumber } from "./getNumber";
 import { getSpecialCode } from "./getSpecialCode";
+import { getSpecialName } from "./getSpecialName";
 
 function _parseNew(str) {
   const parsed = {};
@@ -13,6 +14,7 @@ function _parseNew(str) {
   parsed.provinceName = null;
   parsed.provinceCode = null;
   parsed.specialCode = null;
+  parsed.specialName = null;
   parsed.counter = getCounter(str);
   parsed.number = getNumber(str);
   return parsed;
@@ -24,6 +26,7 @@ function _parseOld(str) {
   parsed.provinceName = getProvinceName(str);
   parsed.provinceCode = getProvinceCode(str);
   parsed.specialCode = null;
+  parsed.specialName = null;
   parsed.counter = getCounter(str);
   parsed.number = getNumber(str);
   return parsed;
@@ -35,6 +38,7 @@ function _parseSpecial(str) {
   parsed.provinceName = null;
   parsed.provinceCode = null;
   parsed.specialCode = getSpecialCode(str);
+  parsed.specialName = getSpecialName(str);
   parsed.counter = null;
   parsed.number = getNumber(str);
   parsed.isSpecial = true;

@@ -398,6 +398,7 @@
     parsed.provinceName = null;
     parsed.provinceCode = null;
     parsed.specialCode = null;
+    parsed.specialName = null;
     parsed.counter = getCounter(str);
     parsed.number = getNumber(str);
     return parsed;
@@ -409,6 +410,7 @@
     parsed.provinceName = getProvinceName(str);
     parsed.provinceCode = getProvinceCode(str);
     parsed.specialCode = null;
+    parsed.specialName = null;
     parsed.counter = getCounter(str);
     parsed.number = getNumber(str);
     return parsed;
@@ -420,6 +422,7 @@
     parsed.provinceName = null;
     parsed.provinceCode = null;
     parsed.specialCode = getSpecialCode(str);
+    parsed.specialName = getSpecialName(str);
     parsed.counter = null;
     parsed.number = getNumber(str);
     parsed.isSpecial = true;
