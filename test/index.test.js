@@ -8,6 +8,7 @@ const {
   getProvinceName,
   getProvinceCode,
   getSpecialCode,
+  getSpecialName,
   PROVINCES
 } = require("../dist/index");
 
@@ -38,6 +39,10 @@ describe("api", () => {
 
   it("should export getSpecialCode", () => {
     assert.ok(getSpecialCode);
+  });
+
+  it("should export getSpecialName", () => {
+    assert.ok(getSpecialName);
   });
 
   it("should export getCounter", () => {
