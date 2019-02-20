@@ -45,6 +45,18 @@ isOld("GI-1234-BL"); //=> true
 isOld("DGP 1234 BL"); //=> true
 ```
 
+### isSpecial()
+
+Police, Air force, Army, Navy, etc. have special plates.
+
+```js
+import { isSpecial } from "spanish-car-plate";
+
+isSpecial("DGP 3874"); //=> true
+isSpecial("CNP-5764"); //=> true
+isSpecial("E8720"); //=> true
+```
+
 ### getCounter()
 
 ```js

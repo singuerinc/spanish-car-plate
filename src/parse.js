@@ -1,13 +1,18 @@
 import { isValid } from "./isValid";
 import { isOld } from "./isOld";
+import { isSpecial } from "./isSpecial";
 import { getProvinceName } from "./getProvinceName";
 import { getProvinceCode } from "./getProvinceCode";
 import { getCounter } from "./getCounter";
 import { getNumber } from "./getNumber";
+import { getSpecialCode } from "./getSpecialCode";
 
 function _parseNew(str) {
   const parsed = {};
   parsed.isOld = false;
+  parsed.provinceName = null;
+  parsed.provinceCode = null;
+  parsed.specialCode = null;
   parsed.counter = getCounter(str);
   parsed.number = getNumber(str);
   return parsed;
@@ -16,12 +21,23 @@ function _parseNew(str) {
 function _parseOld(str) {
   const parsed = {};
   parsed.isOld = true;
-  const provinceName = getProvinceName(str);
-  const provinceCode = getProvinceCode(str);
-  parsed.provinceName = provinceName;
-  parsed.provinceCode = provinceCode;
+  parsed.provinceName = getProvinceName(str);
+  parsed.provinceCode = getProvinceCode(str);
+  parsed.specialCode = null;
   parsed.counter = getCounter(str);
   parsed.number = getNumber(str);
+  return parsed;
+}
+
+function _parseSpecial(str) {
+  const parsed = {};
+  parsed.isOld = false;
+  parsed.provinceName = null;
+  parsed.provinceCode = null;
+  parsed.specialCode = getSpecialCode(str);
+  parsed.counter = null;
+  parsed.number = getNumber(str);
+  parsed.isSpecial = true;
   return parsed;
 }
 
@@ -36,15 +52,19 @@ function _parseOld(str) {
  */
 function parse(value) {
   const str = !value ? "" : value;
-  const old = isOld(str);
   const parsed = {
     isSpecial: false // TODO: not implemented
   };
 
-  if (old === true) {
+  if (isOld(str) === true) {
     return {
       ...parsed,
       ..._parseOld(str)
+    };
+  } else if (isSpecial(str) === true) {
+    return {
+      ...parsed,
+      ..._parseSpecial(str)
     };
   } else if (isValid(str) === true) {
     return {
