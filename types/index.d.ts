@@ -2,20 +2,17 @@ declare function getCounter(value: string): string;
 declare function getNumber(value: string): number;
 declare function getProvinceCode(value: string): string;
 declare function getProvinceName(value: string): string;
-
 declare function isSpecial(value: string): boolean;
-/**
- * Returns true if is a valid (old system 1971-2000) car plate
- */
+declare function getSpecialName(value: string): string;
+declare function getSpecialCode(value: string): string;
 declare function isOld(value: string): boolean;
-/**
- * Returns true if is a valid (post year 2000) car plate
- */
 declare function isValid(value: string): boolean;
 
 interface IPlate {
   isSpecial: boolean;
   isOld: boolean;
+  specialCode: string;
+  specialName: string;
   provinceCode: string;
   provinceName: string;
   number: number;
@@ -35,6 +32,8 @@ export {
   getCounter,
   getProvinceName,
   getProvinceCode,
+  getSpecialName,
+  getSpecialCode,
   getNumber,
   PROVINCES,
   SPECIALS
