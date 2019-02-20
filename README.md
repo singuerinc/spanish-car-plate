@@ -90,6 +90,14 @@ getProvinceCode("M 1234 BL"); //=> "M"
 getProvinceCode("SO-1234 BL"); //=> "SO"
 ```
 
+### getSpecialCode()
+
+```js
+import { getSpecialCode } from "spanish-car-plate";
+
+getSpecialCode("DGP1234"); //=> "DGP"
+```
+
 ### parse()
 
 Get all the information about the plate
