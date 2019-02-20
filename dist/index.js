@@ -1,4 +1,4 @@
-//  Spanish Car Plate v0.0.6
+//  Spanish Car Plate v0.0.7
 //  https://github.com/singuerinc/spanish-car-plate
 //  (c) 2019-2019 Nahuel Scotti
 //  Spanish Car Plate may be freely distributed under the MIT license.
@@ -239,15 +239,44 @@
           num = _partsOld3[1];
 
       return parseInt(num, 10);
+    } else if (isSpecial(str) === true) {
+      var _partsSpecial2 = _partsSpecial(str),
+          _partsSpecial3 = _slicedToArray(_partsSpecial2, 2),
+          _num = _partsSpecial3[1];
+
+      return parseInt(_num, 10);
     } else if (isValid(str)) {
       var _partsNew2 = _partsNew(str),
           _partsNew3 = _slicedToArray(_partsNew2, 1),
-          _num = _partsNew3[0];
+          _num2 = _partsNew3[0];
 
-      return parseInt(_num, 10);
+      return parseInt(_num2, 10);
     }
 
     return null;
+  }
+
+  /**
+   * Returns the special code for a valid car plate
+   * @param {string} value
+   * @returns {string}
+   * @since 0.0.7
+   * @example
+   * getSpecialCode("DGP-1234"); // => "DGP"
+   */
+
+  function getSpecialCode(value) {
+    var str = !value ? "" : value;
+
+    if (!isSpecial(str)) {
+      return null;
+    }
+
+    var _partsSpecial2 = _partsSpecial(str),
+        _partsSpecial3 = _slicedToArray(_partsSpecial2, 1),
+        code = _partsSpecial3[0];
+
+    return SPECIALS[code] ? code : null;
   }
 
   var PROVINCES = {
@@ -351,6 +380,9 @@
   function _parseNew(str) {
     var parsed = {};
     parsed.isOld = false;
+    parsed.provinceName = null;
+    parsed.provinceCode = null;
+    parsed.specialCode = null;
     parsed.counter = getCounter(str);
     parsed.number = getNumber(str);
     return parsed;
@@ -359,12 +391,23 @@
   function _parseOld(str) {
     var parsed = {};
     parsed.isOld = true;
-    var provinceName = getProvinceName(str);
-    var provinceCode = getProvinceCode(str);
-    parsed.provinceName = provinceName;
-    parsed.provinceCode = provinceCode;
+    parsed.provinceName = getProvinceName(str);
+    parsed.provinceCode = getProvinceCode(str);
+    parsed.specialCode = null;
     parsed.counter = getCounter(str);
     parsed.number = getNumber(str);
+    return parsed;
+  }
+
+  function _parseSpecial(str) {
+    var parsed = {};
+    parsed.isOld = false;
+    parsed.provinceName = null;
+    parsed.provinceCode = null;
+    parsed.specialCode = getSpecialCode(str);
+    parsed.counter = null;
+    parsed.number = getNumber(str);
+    parsed.isSpecial = true;
     return parsed;
   }
   /**
@@ -380,14 +423,15 @@
 
   function parse(value) {
     var str = !value ? "" : value;
-    var old = isOld(str);
     var parsed = {
       isSpecial: false // TODO: not implemented
 
     };
 
-    if (old === true) {
+    if (isOld(str) === true) {
       return _objectSpread({}, parsed, _parseOld(str));
+    } else if (isSpecial(str) === true) {
+      return _objectSpread({}, parsed, _parseSpecial(str));
     } else if (isValid(str) === true) {
       return _objectSpread({}, parsed, _parseNew(str));
     }
@@ -400,6 +444,7 @@
   exports.isSpecial = isSpecial;
   exports.getCounter = getCounter;
   exports.getNumber = getNumber;
+  exports.getSpecialCode = getSpecialCode;
   exports.getProvinceName = getProvinceName;
   exports.getProvinceCode = getProvinceCode;
   exports.parse = parse;

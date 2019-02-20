@@ -21,11 +21,26 @@ describe("#parse", () => {
   });
 
   describe("valid", () => {
+    describe("special", () => {
+      it("parse", () => {
+        assert.deepStrictEqual(parse("DGP 1234"), {
+          isSpecial: true,
+          isOld: false,
+          specialCode: "DGP",
+          provinceCode: null,
+          provinceName: null,
+          number: 1234,
+          counter: null
+        });
+      });
+    });
+
     describe("old", () => {
       it("parse", () => {
         assert.deepStrictEqual(parse("GI 2345 BC"), {
           isSpecial: false,
           isOld: true,
+          specialCode: null,
           provinceCode: "GI",
           provinceName: "Province of Girona",
           number: 2345,
@@ -39,6 +54,9 @@ describe("#parse", () => {
         assert.deepStrictEqual(parse("2345GBC"), {
           isSpecial: false,
           isOld: false,
+          specialCode: null,
+          provinceCode: null,
+          provinceName: null,
           number: 2345,
           counter: "GBC"
         });

@@ -1,6 +1,7 @@
 import { isOld } from "./isOld";
 import { isValid } from "./isValid";
-import { _partsNew, _partsOld } from "./_utils";
+import { isSpecial } from "./isSpecial";
+import { _partsNew, _partsOld, _partsSpecial } from "./_utils";
 
 /**
  *
@@ -16,6 +17,9 @@ function getNumber(value) {
 
   if (isOld(str) === true) {
     const [, num] = _partsOld(str);
+    return parseInt(num, 10);
+  } else if (isSpecial(str) === true) {
+    const [, num] = _partsSpecial(str);
     return parseInt(num, 10);
   } else if (isValid(str)) {
     const [num] = _partsNew(str);
