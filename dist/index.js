@@ -279,6 +279,21 @@
     return SPECIALS[code] ? code : null;
   }
 
+  /**
+   * Returns the special name for a valid car plate
+   * @param {string} value
+   * @returns {string}
+   * @since 0.0.7
+   * @example
+   * getSpecialCode("CME1234"); // => "Corps of the Mossos d'Esquadra"
+   */
+
+  function getSpecialName(value) {
+    var str = !value ? "" : value;
+    var code = getSpecialCode(str);
+    return SPECIALS[code] || null;
+  }
+
   var PROVINCES = {
     A: "Province of Alicante",
     AB: "Province of Albacete",
@@ -445,6 +460,7 @@
   exports.getCounter = getCounter;
   exports.getNumber = getNumber;
   exports.getSpecialCode = getSpecialCode;
+  exports.getSpecialName = getSpecialName;
   exports.getProvinceName = getProvinceName;
   exports.getProvinceCode = getProvinceCode;
   exports.parse = parse;

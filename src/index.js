@@ -4,6 +4,7 @@ export { isSpecial } from "./isSpecial";
 export { getCounter } from "./getCounter";
 export { getNumber } from "./getNumber";
 export { getSpecialCode } from "./getSpecialCode";
+export { getSpecialName } from "./getSpecialName";
 export { getProvinceName } from "./getProvinceName";
 export { getProvinceCode } from "./getProvinceCode";
 export { parse } from "./parse";
