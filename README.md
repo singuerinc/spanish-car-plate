@@ -98,6 +98,15 @@ import { getSpecialCode } from "spanish-car-plate";
 getSpecialCode("DGP1234"); //=> "DGP"
 ```
 
+### getSpecialName()
+
+```js
+import { getSpecialName } from "spanish-car-plate";
+
+getSpecialName("DGP1234"); //=> "Spanish Police"
+getSpecialName("CME1234"); //=> "Corps of the Mossos d'Esquadra"
+```
+
 ### parse()
 
 Get all the information about the plate
