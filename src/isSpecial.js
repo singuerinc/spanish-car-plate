@@ -19,7 +19,7 @@ function isSpecial(value) {
     return false;
   }
 
-  if (!SPECIALS[code]) {
+  if (!SPECIALS[code.toUpperCase()]) {
     return false;
   }
 

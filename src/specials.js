@@ -14,5 +14,5 @@ export const SPECIALS = {
   MOP: "Public Works Ministry",
   PME: "State owned vehicles",
   PMM: "State owned vehicles, on a Ministry",
-  Crown: "King's Car"
+  CROWN: "King's Car"
 };

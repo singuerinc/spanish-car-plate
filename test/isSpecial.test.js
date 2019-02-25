@@ -25,6 +25,14 @@ describe("#isSpecial", () => {
       assert.equal(isSpecial("Crown 0000"), true);
     });
 
+    it("should be valid with crown", () => {
+      assert.equal(isSpecial("crown0001"), true);
+    });
+
+    it("should be valid with crown", () => {
+      assert.equal(isSpecial("crown-0001"), true);
+    });
+
     it("should be valid with CME", () => {
       assert.equal(isSpecial("CME 0001"), true);
     });
