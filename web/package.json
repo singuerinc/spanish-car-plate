@@ -7,7 +7,7 @@
     "feather-icons": "^4.9.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "spanish-car-plate": "^0.0.1",
+    "spanish-car-plate": "^1.0.0",
     "tachyons": "^4.11.1"
   },
   "devDependencies": {
