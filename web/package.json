@@ -4,16 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "spanish-car-plate": "^0.0.1",
     "feather-icons": "^4.9.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "spanish-car-plate": "^0.0.1",
     "tachyons": "^4.11.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
-    "@types/react": "^16.3.14",
-    "@types/react-dom": "^16.0.5",
+    "@types/react": "^16.8.4",
+    "@types/react-dom": "^16.8.2",
     "parcel-bundler": "^1.10.3",
     "typescript": "^3.1.6"
   },
