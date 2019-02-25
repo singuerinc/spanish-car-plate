@@ -13,7 +13,7 @@ function getSpecialName(value) {
   const str = !value ? "" : value;
   const code = getSpecialCode(str);
 
-  return SPECIALS[code] || null;
+  return code ? SPECIALS[code.toUpperCase()] : null;
 }
 
 export { getSpecialName };

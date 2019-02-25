@@ -19,7 +19,7 @@ function getSpecialCode(value) {
 
   const [code] = _partsSpecial(str);
 
-  return SPECIALS[code] ? code : null;
+  return code ? (SPECIALS[code.toUpperCase()] ? code.toUpperCase() : null) : null;
 }
 
 export { getSpecialCode };
