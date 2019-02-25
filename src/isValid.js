@@ -1,5 +1,6 @@
 import { _partsNew } from "./_utils";
 import { isOld } from "./isOld";
+import { isSpecial } from "./isSpecial";
 
 /**
  * Returns true if is a valid (post year 2000) car plate
@@ -11,6 +12,10 @@ import { isOld } from "./isOld";
  */
 function isValid(value) {
   if (isOld(value)) {
+    return true;
+  }
+
+  if (isSpecial(value)) {
     return true;
   }
 
