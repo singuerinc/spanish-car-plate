@@ -36,5 +36,6 @@ export {
   getSpecialCode,
   getNumber,
   PROVINCES,
-  SPECIALS
+  SPECIALS,
+  parse
 };
