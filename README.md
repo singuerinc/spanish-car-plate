@@ -108,6 +108,15 @@ getSpecialName("DGP1234"); //=> "Spanish Police"
 getSpecialName("CME1234"); //=> "Corps of the Mossos d'Esquadra"
 ```
 
+### getNumber()
+
+```js
+import { getNumber } from "spanish-car-plate";
+
+getNumber("DGP0001"); //=> "0001"
+getNumber("CME1234"); //=> "1234"
+```
+
 ### parse()
 
 Get all the information about the plate
