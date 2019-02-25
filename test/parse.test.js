@@ -21,6 +21,21 @@ describe("#parse", () => {
   });
 
   describe("valid", () => {
+    describe("special with zero", () => {
+      it("parse", () => {
+        assert.deepStrictEqual(parse("Crown 0001"), {
+          isSpecial: true,
+          isOld: false,
+          specialCode: "CROWN",
+          specialName: "King's Car",
+          provinceCode: null,
+          provinceName: null,
+          number: "0001",
+          counter: null
+        });
+      });
+    });
+
     describe("special", () => {
       it("parse", () => {
         assert.deepStrictEqual(parse("DGP 1234"), {
@@ -30,7 +45,7 @@ describe("#parse", () => {
           specialName: "Spanish Police",
           provinceCode: null,
           provinceName: null,
-          number: 1234,
+          number: "1234",
           counter: null
         });
       });
@@ -45,7 +60,22 @@ describe("#parse", () => {
           specialName: null,
           provinceCode: "GI",
           provinceName: "Province of Girona",
-          number: 2345,
+          number: "2345",
+          counter: "BC"
+        });
+      });
+    });
+
+    describe("old with zero", () => {
+      it("parse", () => {
+        assert.deepStrictEqual(parse("GI 0123 BC"), {
+          isSpecial: false,
+          isOld: true,
+          specialCode: null,
+          specialName: null,
+          provinceCode: "GI",
+          provinceName: "Province of Girona",
+          number: "0123",
           counter: "BC"
         });
       });
@@ -60,7 +90,22 @@ describe("#parse", () => {
           specialName: null,
           provinceCode: null,
           provinceName: null,
-          number: 2345,
+          number: "2345",
+          counter: "GBC"
+        });
+      });
+    });
+
+    describe("new with zero", () => {
+      it("parse", () => {
+        assert.deepStrictEqual(parse("0345GBC"), {
+          isSpecial: false,
+          isOld: false,
+          specialCode: null,
+          specialName: null,
+          provinceCode: null,
+          provinceName: null,
+          number: "0345",
           counter: "GBC"
         });
       });
