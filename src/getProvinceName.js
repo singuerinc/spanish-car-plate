@@ -13,7 +13,7 @@ function getProvinceName(value) {
   const str = !value ? "" : value;
   const code = getProvinceCode(str);
 
-  return PROVINCES[code] || null;
+  return code ? PROVINCES[code.toUpperCase()] : null;
 }
 
 export { getProvinceName };

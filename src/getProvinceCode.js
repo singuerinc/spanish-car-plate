@@ -19,7 +19,7 @@ function getProvinceCode(value) {
 
   const [code] = _partsOld(str);
 
-  return PROVINCES[code] ? code : null;
+  return code ? (PROVINCES[code.toUpperCase()] ? code.toUpperCase() : null) : null;
 }
 
 export { getProvinceCode };
