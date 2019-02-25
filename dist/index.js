@@ -9,14 +9,25 @@
   (factory((global.SpanishCarPlate = {})));
 }(this, (function (exports) { 'use strict';
 
+  /**
+   * @param {string} str
+   */
   function _partsSpecial(str) {
-    var cleaned = str.replace(/^[\s]*([CMEDGPNATFSHMORW]{1,5})[^A-Z0-9]*([0-9]{4})[\s]*$/i, "$1,$2");
+    var cleaned = str.replace(/^[\s]*([CMEDGPNATFSHMORW]{1,5})[\W]*([0-9]{4})[\s]*$/i, "$1,$2");
     return cleaned.split(",");
   }
+  /**
+   * @param {string} str
+   */
+
   function _partsOld(str) {
     var cleaned = str.replace(/^[\s]*([A-Z]{1,3})[^A-Z0-9]*([0-9]{4})[^A-Z0-9]*([A-Z]{2})[\s]*$/i, "$1,$2,$3");
     return cleaned.split(",");
   }
+  /**
+   * @param {string} str
+   */
+
   function _partsNew(str) {
     var cleaned = str.replace(/^[\s]*([0-9]{4})[^A-Z0-9]*([BCDFGHJKLMNPRSTVWXYZ]{3})[\s]*$/i, "$1,$2");
     return cleaned.split(",");
@@ -41,31 +52,6 @@
     }
 
     return /^[A-Z]{1,3}[0-9]{4}[A-Z]{2}$/i.test(cleaned);
-  }
-
-  /**
-   * Returns true if is a valid (post year 2000) car plate
-   * @param {string} value
-   * @returns {boolean}
-   * @since 0.0.1
-   * @example
-   * isValid("2345BCF"); // => true
-   */
-
-  function isValid(value) {
-    if (isOld(value)) {
-      return true;
-    }
-
-    var str = !value ? "" : value;
-
-    var cleaned = _partsNew(str).join("");
-
-    if (cleaned.length !== 7) {
-      return false;
-    }
-
-    return /^[0-9]{4}[BCDFGHJKLMNPRSTVWXYZ]{3}$/i.test(cleaned);
   }
 
   function _defineProperty(obj, key, value) {
@@ -156,7 +142,7 @@
     MOP: "Public Works Ministry",
     PME: "State owned vehicles",
     PMM: "State owned vehicles, on a Ministry",
-    Crown: "King's Car"
+    CROWN: "King's Car"
   };
 
   /**
@@ -183,11 +169,40 @@
       return false;
     }
 
-    if (!SPECIALS[code]) {
+    if (!SPECIALS[code.toUpperCase()]) {
       return false;
     }
 
     return /^[CMEDGPNATFSHMORW]{1,5}[0-9]{4}$/i.test(cleaned);
+  }
+
+  /**
+   * Returns true if is a valid (post year 2000) car plate
+   * @param {string} value
+   * @returns {boolean}
+   * @since 0.0.1
+   * @example
+   * isValid("2345BCF"); // => true
+   */
+
+  function isValid(value) {
+    if (isOld(value)) {
+      return true;
+    }
+
+    if (isSpecial(value)) {
+      return true;
+    }
+
+    var str = !value ? "" : value;
+
+    var cleaned = _partsNew(str).join("");
+
+    if (cleaned.length !== 7) {
+      return false;
+    }
+
+    return /^[0-9]{4}[BCDFGHJKLMNPRSTVWXYZ]{3}$/i.test(cleaned);
   }
 
   /**
@@ -226,34 +241,37 @@
    * @returns {number}
    * @since 0.0.5
    * @example
-   * getNumber("2345BCF"); // => 2345
-   * getNumber("GI-1234-CS"); // => 1234
+   * getNumber("2345BCF"); // => "2345"
+   * getNumber("GI-1234-CS"); // => "1234"
    */
 
   function getNumber(value) {
     var str = !value ? "" : value;
+    var n;
 
     if (isOld(str) === true) {
       var _partsOld2 = _partsOld(str),
           _partsOld3 = _slicedToArray(_partsOld2, 2),
           num = _partsOld3[1];
 
-      return parseInt(num, 10);
+      n = num;
     } else if (isSpecial(str) === true) {
       var _partsSpecial2 = _partsSpecial(str),
           _partsSpecial3 = _slicedToArray(_partsSpecial2, 2),
           _num = _partsSpecial3[1];
 
-      return parseInt(_num, 10);
+      n = _num;
     } else if (isValid(str)) {
       var _partsNew2 = _partsNew(str),
           _partsNew3 = _slicedToArray(_partsNew2, 1),
           _num2 = _partsNew3[0];
 
-      return parseInt(_num2, 10);
+      n = _num2;
+    } else {
+      return null;
     }
 
-    return null;
+    return parseInt(n, 10).toString().padStart(4, "0");
   }
 
   /**
@@ -276,7 +294,7 @@
         _partsSpecial3 = _slicedToArray(_partsSpecial2, 1),
         code = _partsSpecial3[0];
 
-    return SPECIALS[code] ? code : null;
+    return code ? SPECIALS[code.toUpperCase()] ? code.toUpperCase() : null : null;
   }
 
   /**
@@ -291,7 +309,7 @@
   function getSpecialName(value) {
     var str = !value ? "" : value;
     var code = getSpecialCode(str);
-    return SPECIALS[code] || null;
+    return code ? SPECIALS[code.toUpperCase()] : null;
   }
 
   var PROVINCES = {
@@ -374,7 +392,7 @@
         _partsOld3 = _slicedToArray(_partsOld2, 1),
         code = _partsOld3[0];
 
-    return PROVINCES[code] ? code : null;
+    return code ? PROVINCES[code.toUpperCase()] ? code.toUpperCase() : null : null;
   }
 
   /**
@@ -389,7 +407,7 @@
   function getProvinceName(value) {
     var str = !value ? "" : value;
     var code = getProvinceCode(str);
-    return PROVINCES[code] || null;
+    return code ? PROVINCES[code.toUpperCase()] : null;
   }
 
   function _parseNew(str) {
