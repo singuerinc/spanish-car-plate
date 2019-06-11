@@ -1,4 +1,4 @@
-//  Spanish Car Plate v0.0.7
+//  Spanish Car Plate v1.0.0
 //  https://github.com/singuerinc/spanish-car-plate
 //  (c) 2019-2019 Nahuel Scotti
 //  Spanish Car Plate may be freely distributed under the MIT license.
