@@ -1,4 +1,4 @@
-//  Spanish Car Plate v1.0.0
+//  Spanish Car Plate v1.0.1
 //  https://github.com/singuerinc/spanish-car-plate
 //  (c) 2019-2019 Nahuel Scotti
 //  Spanish Car Plate may be freely distributed under the MIT license.
@@ -6,8 +6,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.SpanishCarPlate = {})));
-}(this, (function (exports) { 'use strict';
+  (global = global || self, factory(global.SpanishCarPlate = {}));
+}(this, function (exports) { 'use strict';
 
   /**
    * @param {string} str
@@ -69,20 +69,35 @@
     return obj;
   }
 
-  function _objectSpread(target) {
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
-      var ownKeys = Object.keys(source);
 
-      if (typeof Object.getOwnPropertySymbols === 'function') {
-        ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-          return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-        }));
+      if (i % 2) {
+        ownKeys(source, true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(source).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
       }
-
-      ownKeys.forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
     }
 
     return target;
@@ -465,30 +480,30 @@
     };
 
     if (isOld(str) === true) {
-      return _objectSpread({}, parsed, _parseOld(str));
+      return _objectSpread2({}, parsed, {}, _parseOld(str));
     } else if (isSpecial(str) === true) {
-      return _objectSpread({}, parsed, _parseSpecial(str));
+      return _objectSpread2({}, parsed, {}, _parseSpecial(str));
     } else if (isValid(str) === true) {
-      return _objectSpread({}, parsed, _parseNew(str));
+      return _objectSpread2({}, parsed, {}, _parseNew(str));
     }
 
     return null;
   }
 
-  exports.isValid = isValid;
-  exports.isOld = isOld;
-  exports.isSpecial = isSpecial;
-  exports.getCounter = getCounter;
-  exports.getNumber = getNumber;
-  exports.getSpecialCode = getSpecialCode;
-  exports.getSpecialName = getSpecialName;
-  exports.getProvinceName = getProvinceName;
-  exports.getProvinceCode = getProvinceCode;
-  exports.parse = parse;
   exports.PROVINCES = PROVINCES;
   exports.SPECIALS = SPECIALS;
+  exports.getCounter = getCounter;
+  exports.getNumber = getNumber;
+  exports.getProvinceCode = getProvinceCode;
+  exports.getProvinceName = getProvinceName;
+  exports.getSpecialCode = getSpecialCode;
+  exports.getSpecialName = getSpecialName;
+  exports.isOld = isOld;
+  exports.isSpecial = isSpecial;
+  exports.isValid = isValid;
+  exports.parse = parse;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=index.js.map
